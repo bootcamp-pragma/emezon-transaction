@@ -4,6 +4,7 @@ import com.emezon.transaction.domain.spi.IJwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,9 @@ import java.util.function.Function;
 public class JwtService implements IJwtService {
     @Value("${spring.security.jwt.secret}")
     private String secret;
+
+    @Value("${spring.security.jwt.expiration-time}")
+    private long expirationTime;
 
     @Override
     public String extractUsername(String token) {
@@ -67,6 +71,16 @@ public class JwtService implements IJwtService {
     @Override
     public String getRoleName(String token) {
         return extractClaim(token, claims -> (String) claims.get(SecurityConstants.ROLE_NAME_CLAIM));
+    }
+
+    @Override
+    public String generateToken(Map<String, Object> claims) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + (expirationTime * 1000L)))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
 

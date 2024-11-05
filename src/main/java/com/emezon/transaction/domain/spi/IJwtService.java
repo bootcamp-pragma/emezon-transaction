@@ -13,5 +13,6 @@ public interface IJwtService {
 
     String getRoleName(String token);
 
+    String generateToken(Map<String, Object> claims);
 
 }
