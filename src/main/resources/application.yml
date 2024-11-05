@@ -2,6 +2,8 @@ app-description: Transaction Microservice API for managing transactions of Emezo
 app-title: Transaction Management API
 app-version: 1.0.0
 
+server:
+    port: ${PORT:8080}
 spring:
     application:
         name: transaction

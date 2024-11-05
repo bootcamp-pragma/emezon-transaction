@@ -1,6 +1,6 @@
 package com.emezon.transaction.infra.security;
 
-import com.emezon.cart.domain.models.external.UserRoles;
+import com.emezon.transaction.domain.models.external.UserRoles;
 
 public class SecurityConstants {
 
