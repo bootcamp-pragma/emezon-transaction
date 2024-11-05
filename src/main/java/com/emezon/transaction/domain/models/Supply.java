@@ -122,6 +122,7 @@ public class Supply {
             supply.suppliedById = this.suppliedById;
             supply.comments = this.comments;
             supply.cost = this.cost;
+            supply.restockDate = this.restockDate;
             supply.createdAt = this.createdAt;
             supply.updatedAt = this.updatedAt;
             return supply;
