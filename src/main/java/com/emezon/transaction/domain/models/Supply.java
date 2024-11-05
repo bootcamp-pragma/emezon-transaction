@@ -13,69 +13,108 @@ public class Supply {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Supply() { }
+    private Supply() { }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public String getArticleId() {
         return articleId;
-    }
-
-    public void setArticleId(String articleId) {
-        this.articleId = articleId;
     }
 
     public String getSuppliedById() {
         return suppliedById;
     }
 
-    public void setSuppliedById(String suppliedById) {
-        this.suppliedById = suppliedById;
-    }
 
     public String getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
 
     public Double getCost() {
         return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public static SupplyBuilder builder() {
+        return new SupplyBuilder();
     }
+
+    public static class SupplyBuilder {
+        private String id;
+        private int quantity;
+        private String articleId;
+        private String suppliedById;
+        private String comments;
+        private Double cost;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+
+        public SupplyBuilder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public SupplyBuilder quantity(int quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public SupplyBuilder articleId(String articleId) {
+            this.articleId = articleId;
+            return this;
+        }
+
+        public SupplyBuilder suppliedById(String suppliedById) {
+            this.suppliedById = suppliedById;
+            return this;
+        }
+
+        public SupplyBuilder comments(String comments) {
+            this.comments = comments;
+            return this;
+        }
+
+        public SupplyBuilder cost(Double cost) {
+            this.cost = cost;
+            return this;
+        }
+
+        public SupplyBuilder createdAt(LocalDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public SupplyBuilder updatedAt(LocalDateTime updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Supply build() {
+            Supply supply = new Supply();
+            supply.id = this.id;
+            supply.quantity = this.quantity;
+            supply.articleId = this.articleId;
+            supply.suppliedById = this.suppliedById;
+            supply.comments = this.comments;
+            supply.cost = this.cost;
+            supply.createdAt = this.createdAt;
+            supply.updatedAt = this.updatedAt;
+            return supply;
+        }
+    }
+
 }
