@@ -10,6 +10,8 @@ public interface ISupplyRepositoryOutPort {
 
     Optional<Supply> findById(String id);
 
+    void deleteById(String id);
+
     // Add pagination
 
 //    Optional<Supply> findByArticleId(String articleId);
