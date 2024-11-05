@@ -13,6 +13,7 @@ public class SupplyEntityMapper {
                 .suppliedById(supply.getSuppliedById())
                 .comments(supply.getComments())
                 .cost(supply.getCost())
+                .restockDate(supply.getRestockDate())
                 .createdAt(supply.getCreatedAt())
                 .updatedAt(supply.getUpdatedAt())
                 .build();
@@ -26,6 +27,7 @@ public class SupplyEntityMapper {
                 .suppliedById(supplyEntity.getSuppliedById())
                 .comments(supplyEntity.getComments())
                 .cost(supplyEntity.getCost())
+                .restockDate(supplyEntity.getRestockDate())
                 .createdAt(supplyEntity.getCreatedAt())
                 .updatedAt(supplyEntity.getUpdatedAt())
                 .build();

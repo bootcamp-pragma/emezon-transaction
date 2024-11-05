@@ -10,6 +10,7 @@ public class Supply {
     private String suppliedById;
     private String comments;
     private Double cost;
+    private LocalDateTime restockDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -41,6 +42,10 @@ public class Supply {
         return cost;
     }
 
+    public LocalDateTime getRestockDate() {
+        return restockDate;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -60,6 +65,7 @@ public class Supply {
         private String suppliedById;
         private String comments;
         private Double cost;
+        private LocalDateTime restockDate;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
@@ -90,6 +96,11 @@ public class Supply {
 
         public SupplyBuilder cost(Double cost) {
             this.cost = cost;
+            return this;
+        }
+
+        public SupplyBuilder restockDate(LocalDateTime restockDate) {
+            this.restockDate = restockDate;
             return this;
         }
 

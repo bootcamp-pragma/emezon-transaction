@@ -38,6 +38,8 @@ public class SupplyEntity {
 
     private Double cost;
 
+    private LocalDateTime restockDate;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
