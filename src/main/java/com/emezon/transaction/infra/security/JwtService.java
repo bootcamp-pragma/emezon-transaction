@@ -1,6 +1,7 @@
 package com.emezon.transaction.infra.security;
 
 import com.emezon.transaction.domain.spi.IJwtService;
+import com.emezon.transaction.infra.outbound.feign.dtos.UserFeign;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -8,6 +9,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.security.Key;
 import java.util.Date;
@@ -82,6 +85,17 @@ public class JwtService implements IJwtService {
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
+//    public String getAuthenticatedUserId() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null && authentication.isAuthenticated()) {
+//            Object principal = authentication.getPrincipal();
+//            if (principal instanceof UserFeign user) {
+//                return user.getId();
+//            }
+//        }
+//        return null;
+//    }
 
 
 }

@@ -4,21 +4,32 @@ import com.emezon.transaction.domain.api.IPersistSupplyInPort;
 import com.emezon.transaction.domain.constants.SupplyConstrains;
 import com.emezon.transaction.domain.constants.SupplyErrorMessages;
 import com.emezon.transaction.domain.models.Supply;
+import com.emezon.transaction.domain.models.external.Article;
 import com.emezon.transaction.domain.spi.IJwtService;
 import com.emezon.transaction.domain.spi.ISupplyRepositoryOutPort;
+import com.emezon.transaction.domain.spi.external.IArticleExternalOutPort;
 
 public class PersistSupplyUseCase implements IPersistSupplyInPort {
 
     private final ISupplyRepositoryOutPort repository;
     private final IJwtService jwtService;
+    private final IArticleExternalOutPort articleExternal;
 
-    public PersistSupplyUseCase(ISupplyRepositoryOutPort repository, IJwtService jwtService) {
+    public PersistSupplyUseCase(
+            ISupplyRepositoryOutPort repository,
+            IJwtService jwtService, IArticleExternalOutPort articleExternal) {
         this.repository = repository;
         this.jwtService = jwtService;
+        this.articleExternal = articleExternal;
     }
 
     @Override
     public Supply createSupply(Supply supply) {
+        Article article = articleExternal.findById(supply.getArticleId());
+        if (article == null) {
+            throw new IllegalArgumentException("Article not found");
+        }
+        System.out.println("Article found: " + article.getName());
         Supply processedSupply = processAndValidateSupply(supply);
         Supply newSupply = repository.save(processedSupply);
         // llamar al microservicio de inventario para actualizar el stock
