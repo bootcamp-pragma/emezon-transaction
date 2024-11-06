@@ -37,3 +37,7 @@ springdoc:
         format: JWT
         name: Authorization
 
+feign:
+    okhttp:
+        enabled: true
+

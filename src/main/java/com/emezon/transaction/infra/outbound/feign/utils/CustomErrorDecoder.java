@@ -16,7 +16,7 @@ public class CustomErrorDecoder implements ErrorDecoder {
         if (response.status() == 401) {
             return new RuntimeException(String.format("Unauthorized request for '%s'", methodKey));
         }
-        return new Exception("Error");
+        return new Exception("Unknown error");
     }
 
 

@@ -86,16 +86,16 @@ public class JwtService implements IJwtService {
                 .compact();
     }
 
-//    public String getAuthenticatedUserId() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.isAuthenticated()) {
-//            Object principal = authentication.getPrincipal();
-//            if (principal instanceof UserFeign user) {
-//                return user.getId();
-//            }
-//        }
-//        return null;
-//    }
+    public String getAuthenticatedUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserFeign user) {
+                return user.getId();
+            }
+        }
+        return null;
+    }
 
 
 }

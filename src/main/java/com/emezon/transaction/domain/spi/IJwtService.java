@@ -15,4 +15,6 @@ public interface IJwtService {
 
     String generateToken(Map<String, Object> claims);
 
+    String getAuthenticatedUserId();
+
 }
