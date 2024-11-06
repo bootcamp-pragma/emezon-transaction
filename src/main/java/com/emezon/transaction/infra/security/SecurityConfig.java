@@ -2,10 +2,12 @@ package com.emezon.transaction.infra.security;
 
 import com.emezon.transaction.domain.spi.IJwtHolder;
 import com.emezon.transaction.domain.spi.IJwtService;
+import com.emezon.transaction.infra.inbound.rest.constants.RestApiConstants;
 import com.emezon.transaction.infra.outbound.feign.IUserFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -49,6 +51,10 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(SecurityConstants.WHITE_LIST_URL).permitAll()
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                RestApiConstants.API_SUPPLY + "/**"
+                        ).hasRole(SecurityConstants.AUX_BODEGA)
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)
